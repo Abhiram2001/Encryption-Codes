@@ -11,7 +11,7 @@ def ENCRYPTION():
     print("********************ENCRYPTION*********************************")
     key1 = int(input("Enter the Key1:  "))
     key2 = int(input("Enter the Key2:  "))
-    pt = input("Enter the plain text :  ")
+    pt = input("Enter the plain text :  ").lower()
     i=0
     answer = ""
     while i < len(pt):
@@ -21,13 +21,13 @@ def ENCRYPTION():
         temp = temp % 26
         answer = answer + chr(temp+97)
         i+=1
-    print(answer)
+    print(answer.upper())
 
 def DECRYPTION():
     print("********************DECRYPTION*********************************")
     key1 = int(input("Enter the Key1:  "))
     key2 = int(input("Enter the Key2:  "))
-    ct = input("Enter the cipher text :  ")
+    ct = input("Enter the cipher text :  ").lower()
     i=0
     answer = ""
     inv = mod_inverse(key1, 26)
@@ -38,7 +38,7 @@ def DECRYPTION():
         temp = temp % 26
         answer = answer + chr(temp+97)
         i+=1
-    print(answer)
+    print(answer.upper())
 
 def main():
   ch=int(input("1.Encryption\n2.Decryption\nEnter the choice:"))
