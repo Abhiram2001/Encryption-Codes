@@ -9,34 +9,31 @@ def clear():
 
 def ENCRYPTION():
     print("********************ENCRYPTION*********************************")
-    key = int(input("Enter the Key:  "))
+    key = input("Enter the Key:  ").lower()
     pt = input("Enter the plain text :  ").lower()
-    ptlen = len(pt)
+    i=0
     answer = ""
-    add  = ptlen % key 
-    add = (key - add, 0)[add == 0]
-    for i  in range (0, add):
-        pt = pt + "x"
-    for i in range (0 , key):
-        for j in range (0 , key):
-            answer  = answer + pt[(i + (key*j))]
-    print("Cipher Text : ",answer.upper())
-
+    while i < len(pt):
+        temp = ord(pt[i]) - 97
+        temp = temp + (ord(key[i%len(key)]) - 97)
+        temp = temp % 26
+        answer = answer + chr(temp+97)
+        i+=1
+    print(answer.upper())
 
 def DECRYPTION():
     print("********************DECRYPTION*********************************")
-    key = int(input("Enter the Key:  "))
-    ct = input("Enter the cipher text :  ").lower()
-    ctlen = len(ct)
+    key = input("Enter the Key:  ").lower()
+    ct = input("Enter the plain text :  ").lower()
+    i=0
     answer = ""
-    add  = ctlen % key 
-    if add != 0 :
-        sys.exit("Invalid Cipher Text")
-    for i in range (0 , key):
-        for j in range (0 , key):
-            answer  = answer + ct[(i + (key*j))]
-    print("Plain Text : ",answer.upper())
-    
+    while i < len(ct):
+        temp = ord(ct[i]) - 97
+        temp = temp - (ord(key[i%len(key)]) - 97)
+        temp = temp % 26
+        answer = answer + chr(temp+97)
+        i+=1
+    print(answer.upper())
 
 def main():
   ch=int(input("1.Encryption\n2.Decryption\nEnter the choice:"))
